@@ -6,8 +6,8 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 
 //connect to MongoDB
-mongoose.connect('mongodb://localhost/VRA');
-var db = mongoose.connection;
+//mongoose.connect('mongodb://localhost/VRA');
+//var db = mongoose.connection;
 
 //handle mongo error
 db.on('error', console.error.bind(console, 'connection error:'));
