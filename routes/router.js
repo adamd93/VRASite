@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express();
 var User = require('../models/user');
+var app = require('../app');
 var path = require('path');
 
 
@@ -23,7 +24,6 @@ return res.sendFile(path.resolve('templateLogReg/index.html'));
 });
 
 
-
 //POST route for updating data
 router.post('/', function (req, res, next) {
   // confirm that user typed same password twice
@@ -44,15 +44,23 @@ router.post('/', function (req, res, next) {
       username: req.body.username,
       password: req.body.password,
     }
-
-    User.create(userData, function (error, user) {
+    console.log("in post");
+    
+     app.createUser(userData.email, userData.username, userData.password ,function(value){
+      console.log("in callback");     
+     });
+     app.getUser(userData.username, userData.password, function(value1){
+      console.log(value1);
+         res.send('<h1>Name: </h1>' + userData.username + '<h2>Mail: </h2>' + userData.email + '<br><a type="button" href="/logout">Logout</a>')
+    });
+     
+   /* User.create(userData, function (error, user) {
       if (error) {
         return next(error);
       } else {
-        req.session.userId = user._id;
         return res.redirect('/profile');
       }
-    });
+    });*/
 
   } else if (req.body.logemail && req.body.logpassword) {
     User.authenticate(req.body.logemail, req.body.logpassword, function (error, user) {
@@ -74,6 +82,7 @@ router.post('/', function (req, res, next) {
 
 // GET route after registering
 router.get('/profile', function (req, res, next) {
+  console.log("in getProf");
   User.findById(req.session.userId)
     .exec(function (error, user) {
       if (error) {
@@ -84,7 +93,9 @@ router.get('/profile', function (req, res, next) {
           err.status = 400;
           return next(err);
         } else {
-          return res.send('<h1>Name: </h1>' + user.username + '<h2>Mail: </h2>' + user.email + '<br><a type="button" href="/logout">Logout</a>')
+       
+
+           //res.send('<h1>Name: </h1>' + user.username + '<h2>Mail: </h2>' + user.email + '<br><a type="button" href="/logout">Logout</a>')
         }
       }
     });
