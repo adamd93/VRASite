@@ -38,17 +38,33 @@ module.exports = {
         req.input('password', sql.VarChar, password)
         req.input('email', sql.VarChar, email)
         console.log("in create");
-        req.query("Insert into dbo.Profile (UserName, password, email) values (@username, @password, @email)")
-        .then(function (recordset) {
-          console.log("user created");
-          conn.close();
-          callback(recordset);
-        })
-        // Handle sql statement execution errors
-        .catch(function (err) {
-          console.log(err);
-          conn.close();
-        })
+        req.query("SELECT * FROM dbo.Profile WHERE email =@email"),function(err,rows){
+          if(err) {
+              conDB.end();
+              return console.log(err);
+          }
+      
+          if (!rows.length)
+          {
+            req.query("Insert into dbo.Profile (UserName, password, email) values (@username, @password, @email)")
+            .then(function (recordset) {
+              console.log("user created");
+              conn.close();
+              callback(recordset);
+            })
+            // Handle sql statement execution errors
+            .catch(function (err) {
+              console.log(err);
+              conn.close();
+            })
+          }
+          else{
+            console.log("email already exisits");
+            conn.close();
+            callback(recordset);
+          }
+        }
+    
     
       })
       // Handle connection errors

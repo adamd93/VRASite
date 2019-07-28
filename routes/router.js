@@ -47,7 +47,8 @@ router.post('/', function (req, res, next) {
     console.log("in post");
     
      app.createUser(userData.email, userData.username, userData.password ,function(value){
-      console.log("in callback");     
+      console.log("in callback");   
+      console.log(value);  
      });
      app.getUser(userData.username, userData.password, function(value1){
       console.log(value1);
