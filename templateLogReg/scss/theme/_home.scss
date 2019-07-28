@@ -31,21 +31,21 @@ body {
 }
 
 .p1-gradient-bg {
-	background-image: -moz-linear-gradient( 0deg,#3224b0 0%,#be5ede 100%);
-	background-image: -webkit-linear-gradient( 0deg,#3224b0 0%,#be5ede 100%);
-	background-image: -ms-linear-gradient( 0deg,#3224b0 0%,#be5ede 100%);
+	background-image: -moz-linear-gradient( 0deg,#222 0%,#000 100%);
+	background-image: -webkit-linear-gradient( 0deg,#222 0%,#000 100%);
+	background-image: -ms-linear-gradient( 0deg,#222 0%,#000 100%);
 }
 
 .p2-gradient-bg {
-	background-image: -moz-linear-gradient( 90deg,#3224b0 0%,#be5ede 50%);
-	background-image: -webkit-linear-gradient( 90deg,#3224b0 0%,#be5ede 50%);
-	background-image: -ms-linear-gradient( 90deg,#3224b0 0%,#be5ede 50%);
+	background-image: -moz-linear-gradient( 90deg,#222 0%,#000 50%);
+	background-image: -webkit-linear-gradient( 90deg,#222 0%,#000 50%);
+	background-image: -ms-linear-gradient( 90deg,#222 0%,#000 50%);
 }
 
 .p1-gradient-color {
-	background: -moz-linear-gradient(0deg, #3224b0, #be5ede);
-	background: -webkit-linear-gradient(0deg, #3224b0, #be5ede);
-	background: -ms-linear-gradient(0deg, #3224b0, #be5ede);
+	background: -moz-linear-gradient(0deg, #222, #000);
+	background: -webkit-linear-gradient(0deg, #222, #000);
+	background: -ms-linear-gradient(0deg, #222, #000);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
